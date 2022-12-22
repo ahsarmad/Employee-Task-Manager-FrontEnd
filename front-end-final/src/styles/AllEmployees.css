@@ -15,6 +15,8 @@
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1), 0 5px 15px 0 rgba(0, 0, 0, 0.05);
+  background-color: #00adef;
+  color: #fff;
 }
 
 .card-body {
@@ -48,4 +50,28 @@
 .card .btn {
   width: 150px;
   margin-top: 20px;
+  background-color: #00adef;
+  color: #fff;
+  border-color: #00adef;
 }
+.card:hover .btn {
+  width: 150px;
+  margin-top: 20px;
+  background-color: #fff;
+  color: #00adef;
+  border-color: #fff;
+}
+
+/* .view-details-btn {
+  background-color: #00adef;
+  color: #fff;
+  border-color: #00adef;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.view-details-btn:hover {
+  background-color: #fff;
+  color: #00adef;
+  border-color: #fff;
+} */

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/AllEmployees.css";
-import employeeImage from "../assets/img/profile.jpg";
+import employeeImage from "../assets/img/worker.png";
 
 const AllEmployees = () => {
   const [employees, setEmployees] = useState([]);
@@ -23,7 +23,7 @@ const AllEmployees = () => {
             key={employee.id}
             className="card text-center shadow-lg employee-card"
           >
-            <img src={employeeImage} className="card-img-top" alt="Employee" />
+            <img src={employeeImage} className="card-img" alt="Employee" />
             <div className="card-body">
               <h5 className="card-title">
                 {employee.firstName} {employee.lastName}
@@ -31,7 +31,7 @@ const AllEmployees = () => {
               <p className="card-text">{employee.department}</p>
               <Link
                 to={`/employees/${employee.id}`}
-                className="btn btn-primary"
+                className="btn btn-primary view-details-btn"
               >
                 View Details
               </Link>
