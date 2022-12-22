@@ -1,49 +1,45 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import {
-  Card,
-  Button,
-  Form,
-  Col,
-  Alert, // Add this line to import Alert
-} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/AllEmployees.css";
+import employeeImage from "../assets/img/profile.jpg";
 
-const AllEmployees = (props) => {
+const AllEmployees = () => {
   const [employees, setEmployees] = useState([]);
-  const [error, setError] = useState(null);
-
-  const getEmployees = async () => {
-    try {
-      const res = await axios.get("http://localhost:3000/employees");
-      setEmployees(res.data);
-    } catch (err) {
-      setError(err);
-    }
-  };
+  const location = useLocation();
 
   useEffect(() => {
-    getEmployees();
-  }, []);
+    fetch("http://localhost:3000/employees")
+      .then((response) => response.json())
+      .then((data) => setEmployees(data));
+  }, [location.pathname]);
 
   return (
-    <>
-      {error && <Alert variant="danger">{error.message}</Alert>}
-      <h1>All Employees</h1>
-      {employees.map((employee) => (
-        <Card key={employee.id} style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>
-              {employee.firstName} {employee.lastName}
-            </Card.Title>
-            <Card.Subtitle>{employee.department}</Card.Subtitle>
-            <Link to={`/employees/${employee.id}`}>
-              <Button variant="primary">View</Button>
-            </Link>
-          </Card.Body>
-        </Card>
-      ))}
-    </>
+    <div className="container mt-5">
+      <h1 className="text-center mb-5">All Employees</h1>
+      <div className="card-columns">
+        {employees.map((employee) => (
+          <div
+            key={employee.id}
+            className="card text-center shadow-lg employee-card"
+          >
+            <img src={employeeImage} className="card-img-top" alt="Employee" />
+            <div className="card-body">
+              <h5 className="card-title">
+                {employee.firstName} {employee.lastName}
+              </h5>
+              <p className="card-text">{employee.department}</p>
+              <Link
+                to={`/employees/${employee.id}`}
+                className="btn btn-primary"
+              >
+                View Details
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

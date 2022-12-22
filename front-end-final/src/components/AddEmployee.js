@@ -1,64 +1,69 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const AddEmployee = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [department, setDepartment] = useState("");
-  const [error, setError] = useState("");
+  const { register, handleSubmit, errors } = useForm();
+  const history = useHistory();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const newEmployee = {
-        firstName,
-        lastName,
-        department,
-      };
-      await axios.post("http://localhost:3000/employees", newEmployee);
-      setFirstName("");
-      setLastName("");
-      setDepartment("");
-      // navigate to the all-employees view here
-    } catch (error) {
-      setError(error.message);
-    }
+  const onSubmit = (data) => {
+    axios
+      .post("http://localhost:3000/employees", data)
+      .then((res) => {
+        history.push("/employees");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Label>First Name</Form.Label>
-        <Form.Control
-          type="text"
-          value={firstName}
-          onChange={(event) => setFirstName(event.target.value)}
-          required
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control
-          type="text"
-          value={lastName}
-          onChange={(event) => setLastName(event.target.value)}
-          required
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Department</Form.Label>
-        <Form.Control
-          type="text"
-          value={department}
-          onChange={(event) => setDepartment(event.target.value)}
-          required
-        />
-      </Form.Group>
-      {error && <p>{error}</p>}
-      <Button type="submit">Add Employee</Button>
-    </form>
+    <div className="container mt-4">
+      <h1 className="text-center mb-4">Add New Employee</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-group">
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            className="form-control"
+            name="firstName"
+            ref={register({ required: true })}
+          />
+          {errors.firstName && (
+            <div className="text-danger">This field is required</div>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            className="form-control"
+            name="lastName"
+            ref={register({ required: true })}
+          />
+          {errors.lastName && (
+            <div className="text-danger">This field is required</div>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="department">Department</label>
+          <input
+            type="text"
+            className="form-control"
+            name="department"
+            ref={register({ required: true })}
+          />
+          {errors.department && (
+            <div className="text-danger">This field is required</div>
+          )}
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Add Employee
+        </button>
+      </form>
+    </div>
   );
 };
 
