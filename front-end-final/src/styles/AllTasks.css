@@ -1,7 +1,5 @@
 .card-columns {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+  column-count: 3;
 }
 
 .card {
@@ -9,20 +7,24 @@
   flex-direction: row;
   align-items: center;
   transition: all 0.3s ease-in-out;
-  border-radius: 15px;
+  overflow: hidden;
 }
 
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1), 0 5px 15px 0 rgba(0, 0, 0, 0.05);
-  background-color: #00adef;
-  color: #fff;
 }
 
 .card-body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f2f2f2; /* Change the background color on hover */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.card-body:hover {
+  background-color: #e6e6e6;
 }
 
 .card-title {
@@ -50,30 +52,13 @@
 .card .btn {
   width: 150px;
   margin-top: 20px;
-  background-color: #00adef;
-  border-color: #00adef;
+  background-color: #007bff; /* Change the button color on hover */
+  border-color: #007bff;
   color: #ffffff;
   transition: background-color 0.3s ease-in-out;
 }
-.card:hover .btn {
-  width: 150px;
-  margin-top: 20px;
-  background-color: #fff;
-  color: #00adef;
-  border-color: #fff;
-}
 
-.view-details-btn {
-  background-color: #00adef;
-  color: #fff;
-  border-color: #00adef;
-  font-size: 16px;
-  font-weight: 600;
-  width: 120px;
-}
-
-.view-details-btn:hover {
-  background-color: #fff;
-  color: #00adef;
-  border-color: #fff;
+.card .btn:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
 }

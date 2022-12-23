@@ -1,31 +1,64 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import Homepage from "./Homepage";
-import AllEmployees from "./AllEmployees";
-import SingleEmployee from "./SingleEmployee";
-import AllTasks from "./AllTasks";
-import SingleTask from "./SingleTask";
-import AddEmployee from "./AddEmployee";
-import EditEmployee from "./EditEmployee";
-import AddTask from "./AddTask";
-import EditTask from "./EditTask";
+import React, { Suspense, lazy } from "react";
+import {
+  Switch,
+  Route,
+  useLocation,
+  BrowserRouter,
+  withRouter,
+} from "react-router-dom";
+
+const Homepage = lazy(() => import("./Homepage"));
+const AllEmployees = lazy(() => import("./AllEmployees"));
+const SingleEmployee = lazy(() => import("./SingleEmployee"));
+const AllTasks = lazy(() => import("./AllTasks"));
+const SingleTask = lazy(() => import("./SingleTask"));
+const AddEmployee = lazy(() => import("./AddEmployee"));
+const EditEmployee = lazy(() => import("./EditEmployee"));
+const AddTask = lazy(() => import("./AddTask"));
+const EditTask = lazy(() => import("./EditTask"));
 
 const MainContent = () => {
+  const location = useLocation();
+
   return (
     <main>
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route exact path="/employees" component={AllEmployees} />
-        <Route exact path="/employees/:id" component={SingleEmployee} />
-        <Route exact path="/employees/:id/edit" component={EditEmployee} />
-        <Route exact path="/employees/add" component={AddEmployee} />
-        <Route exact path="/tasks" component={AllTasks} />
-        <Route exact path="/tasks/:id" component={SingleTask} />
-        <Route exact path="/tasks/:id/edit" component={EditTask} />
-        <Route exact path="/tasks/add" component={AddTask} />
-      </Switch>
+      <BrowserRouter>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch location={location}>
+            <Route exact path="/" component={withRouter(Homepage)} />
+            <Route
+              exact
+              path="/employees"
+              component={withRouter(AllEmployees)}
+            />
+            <Route
+              exact
+              path="/employees/:id"
+              component={withRouter(SingleEmployee)}
+            />
+            <Route
+              exact
+              path="/employees/edit/:id"
+              component={withRouter(EditEmployee)}
+            />
+            <Route
+              exact
+              path="/add-employee"
+              component={withRouter(AddEmployee)}
+            />
+            <Route exact path="/tasks" component={withRouter(AllTasks)} />
+            <Route exact path="/tasks/:id" component={withRouter(SingleTask)} />
+            <Route
+              exact
+              path="/tasks/edit/:id"
+              component={withRouter(EditTask)}
+            />
+            <Route exact path="/add-task" component={withRouter(AddTask)} />
+          </Switch>
+        </Suspense>
+      </BrowserRouter>
     </main>
   );
 };
 
-export default MainContent;
+export default withRouter(MainContent);
