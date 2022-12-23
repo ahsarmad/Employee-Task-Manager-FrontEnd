@@ -1,46 +1,34 @@
-// import React from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { Link } from "react-router-dom";
-
-// const Homepage = () => {
-//   return (
-//     <div className="container homepage">
-//       <h1 className="text-center">Welcome to the Task Management App!</h1>
-//       <div className="text-center">
-//         <Link className="btn btn-primary" to="/employees">
-//           View All Employees
-//         </Link>
-//         <Link className="btn btn-primary" to="/tasks">
-//           View All Tasks
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Homepage;
-
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
+import "../styles/Homepage.css";
 
 const Homepage = () => {
   return (
-    <div className="container homepage" style={{ backgroundColor: "#f5f5f5" }}>
-      <h1 className="text-center mb-4 mt-4">
+    <div className="homepage-container container text-center">
+      <h1 className="my-5 homepage-title">
         Welcome to the Task Management App!
       </h1>
-      <div className="text-center">
-        <Link className="btn btn-primary btn-lg mr-4" to="/employees">
+      <div className="d-flex flex-column align-items-center homepage-btns">
+        <Link
+          to="/employees"
+          className="btn btn-primary btn-lg mb-3 homepage-btn"
+        >
           View All Employees
         </Link>
-        <Link className="btn btn-primary btn-lg mr-4" to="/tasks">
+        <Link to="/tasks" className="btn btn-primary btn-lg mb-3 homepage-btn">
           View All Tasks
         </Link>
-        <Link className="btn btn-success btn-lg mr-4" to="/employees/new">
+        <Link
+          to="/add-employee"
+          className="btn btn-success btn-lg mb-3 homepage-btn"
+        >
           Create New Employee
         </Link>
-        <Link className="btn btn-success btn-lg" to="/tasks/new">
+        <Link
+          to="/add-task"
+          className="btn btn-success btn-lg mb-3 homepage-btn"
+        >
           Create New Task
         </Link>
       </div>

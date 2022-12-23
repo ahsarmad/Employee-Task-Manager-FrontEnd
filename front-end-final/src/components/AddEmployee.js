@@ -1,65 +1,231 @@
-import React from "react";
+// // import React, { useState } from "react";
+// // import axios from "axios";
+// // import "../styles/AddEmployee.css";
+
+// // const AddEmployee = () => {
+// //   const [firstName, setFirstName] = useState("");
+// //   const [lastName, setLastName] = useState("");
+// //   const [department, setDepartment] = useState("");
+// //   const [error, setError] = useState(null);
+// //   const [success, setSuccess] = useState(null);
+
+// //   const handleSubmit = async (e) => {
+// //     e.preventDefault();
+// //     try {
+// //       const res = await axios.post("http://localhost:3000/employees", {
+// //         firstName,
+// //         lastName,
+// //         department,
+// //       });
+// //       setSuccess(res.data.message);
+// //       setError(null);
+// //       setFirstName("");
+// //       setLastName("");
+// //       setDepartment("");
+// //     } catch (error) {
+// //       setError(error.response.data.message);
+// //       setSuccess(null);
+// //     }
+// //   };
+
+// //   return (
+// //     <div className="add-employee-container">
+// //       <form onSubmit={handleSubmit}>
+// //         <h1 className="form-title">Add Employee</h1>
+// //         {error && <p className="error">{error}</p>}
+// //         {success && <p className="success">{success}</p>}
+// //         <div className="form-input">
+// //           <label htmlFor="firstName">First Name</label>
+// //           <input
+// //             type="text"
+// //             name="firstName"
+// //             id="firstName"
+// //             value={firstName}
+// //             onChange={(e) => setFirstName(e.target.value)}
+// //             required
+// //           />
+// //         </div>
+// //         <div className="form-input">
+// //           <label htmlFor="lastName">Last Name</label>
+// //           <input
+// //             type="text"
+// //             name="lastName"
+// //             id="lastName"
+// //             value={lastName}
+// //             onChange={(e) => setLastName(e.target.value)}
+// //             required
+// //           />
+// //         </div>
+// //         <div className="form-input">
+// //           <label htmlFor="department">Department</label>
+// //           <input
+// //             type="text"
+// //             name="department"
+// //             id="department"
+// //             value={department}
+// //             onChange={(e) => setDepartment(e.target.value)}
+// //             required
+// //           />
+// //         </div>
+// //         <button type="submit" className="btn submit-btn">
+// //           Add Employee
+// //         </button>
+// //       </form>
+// //     </div>
+// //   );
+// // };
+
+// // export default AddEmployee;
+
+// import React, { useState } from "react";
+// import axios from "axios";
+// import "../styles/AddEmployee.css";
+
+// const AddEmployee = () => {
+//   const [firstName, setFirstName] = useState("");
+//   const [lastName, setLastName] = useState("");
+//   const [department, setDepartment] = useState("");
+//   const [error, setError] = useState(null);
+//   const [success, setSuccess] = useState(null);
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const res = await axios.post("http://localhost:3000/employees", {
+//         firstName,
+//         lastName,
+//         department,
+//       });
+//       setSuccess(res.data.message);
+//       setError(null);
+//       setFirstName("");
+//       setLastName("");
+//       setDepartment("");
+//     } catch (error) {
+//       setError(error.response.data.message);
+//       setSuccess(null);
+//     }
+//   };
+
+//   return (
+//     <div className="add-employee-container">
+//       <form onSubmit={handleSubmit}>
+//         <h1 className="form-title">Add Employee</h1>
+//         {error && <p className="error">{error}</p>}
+//         {success && <p className="success">{success}</p>}
+//         <div className="form-input">
+//           <label htmlFor="firstName">First Name</label>
+//           <input
+//             type="text"
+//             name="firstName"
+//             id="firstName"
+//             value={firstName}
+//             onChange={(e) => setFirstName(e.target.value)}
+//             required
+//           />
+//         </div>
+//         <div className="form-input">
+//           <label htmlFor="lastName">Last Name</label>
+//           <input
+//             type="text"
+//             name="lastName"
+//             id="lastName"
+//             value={lastName}
+//             onChange={(e) => setLastName(e.target.value)}
+//             required
+//           />
+//         </div>
+//         <div className="form-input">
+//           <label htmlFor="department">Department</label>
+//           <input
+//             type="text"
+//             name="department"
+//             id="department"
+//             value={department}
+//             onChange={(e) => setDepartment(e.target.value)}
+//             required
+//           />
+//         </div>
+//         <button type="submit" className="btn submit-btn">
+//           Add Employee
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default AddEmployee;
+
+import React, { useState } from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/AddEmployee.css";
 
 const AddEmployee = () => {
-  const { register, handleSubmit, errors } = useForm();
-  const history = useHistory();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [department, setDepartment] = useState("");
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
-  const onSubmit = (data) => {
-    axios
-      .post("http://localhost:3000/employees", data)
-      .then((res) => {
-        history.push("/employees");
-      })
-      .catch((err) => {
-        console.error(err);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:3000/employees", {
+        firstName,
+        lastName,
+        department,
       });
+      setSuccess(res.data.message);
+      setError(null);
+      setFirstName("");
+      setLastName("");
+      setDepartment("");
+    } catch (error) {
+      setError(error.response.data.message);
+      setSuccess(null);
+    }
   };
 
   return (
-    <div className="container mt-4">
-      <h1 className="text-center mb-4">Add New Employee</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
+    <div className="add-employee-container">
+      <form onSubmit={handleSubmit}>
+        <h1 className="form-title">Add Employee</h1>
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+        <div className="form-input">
           <label htmlFor="firstName">First Name</label>
           <input
             type="text"
-            className="form-control"
             name="firstName"
-            ref={register({ required: true })}
+            id="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
           />
-          {errors.firstName && (
-            <div className="text-danger">This field is required</div>
-          )}
         </div>
-        <div className="form-group">
+        <div className="form-input">
           <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
-            className="form-control"
             name="lastName"
-            ref={register({ required: true })}
+            id="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
           />
-          {errors.lastName && (
-            <div className="text-danger">This field is required</div>
-          )}
         </div>
-        <div className="form-group">
+        <div className="form-input">
           <label htmlFor="department">Department</label>
           <input
             type="text"
-            className="form-control"
             name="department"
-            ref={register({ required: true })}
+            id="department"
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+            required
           />
-          {errors.department && (
-            <div className="text-danger">This field is required</div>
-          )}
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="submit-btn">
           Add Employee
         </button>
       </form>

@@ -1,80 +1,82 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/EditTask.css";
 
-const EditTask = (props) => {
-  const [task, setTask] = useState({
-    id: "",
-    description: "",
-    priorityLevel: "",
-    completionStatus: "",
-  });
+const EditTask = ({ match }) => {
+  const [task, setTask] = useState({});
+  const [description, setDescription] = useState("");
+  const [priorityLevel, setPriorityLevel] = useState("");
+  const [completionStatus, setCompletionStatus] = useState(false);
 
   useEffect(() => {
-    const taskId = props.match.params.id;
     axios
-      .get(`http://localhost:3000/tasks/${taskId}`)
-      .then((res) => {
-        setTask(res.data);
+      .get(`http://localhost:3000/tasks/${match.params.id}`)
+      .then((response) => {
+        setTask(response.data);
+        setDescription(response.data.description);
+        setPriorityLevel(response.data.priorityLevel);
+        setCompletionStatus(response.data.completionStatus);
       })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [props.match.params.id]);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setTask((prevTask) => ({
-      ...prevTask,
-      [name]: value,
-    }));
-  };
+      .catch((error) => console.error(error));
+  }, [match.params.id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const updatedTask = {
+      description,
+      priorityLevel,
+      completionStatus,
+    };
+
     axios
-      .put(`http://localhost:3000/tasks/${task.id}`, task)
-      .then((res) => {
-        props.history.push(`/tasks/${task.id}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      .put(`http://localhost:3000/tasks/${match.params.id}`, updatedTask)
+      .then((response) => console.log(response))
+      .catch((error) => console.error(error));
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Label>Description</Form.Label>
-        <Form.Control
-          type="text"
-          name="description"
-          value={task.description}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Priority Level</Form.Label>
-        <Form.Control
-          type="number"
-          name="priorityLevel"
-          value={task.priorityLevel}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Completion Status</Form.Label>
-        <Form.Control
-          type="checkbox"
-          name="completionStatus"
-          checked={task.completionStatus}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Save
-      </Button>
-    </Form>
+    <div className="container mt-5">
+      <h1 className="text-center mb-5">Edit Task</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <input
+            type="text"
+            className="form-control"
+            id="description"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="priorityLevel">Priority Level</label>
+          <input
+            type="text"
+            className="form-control"
+            id="priorityLevel"
+            value={priorityLevel}
+            onChange={(event) => setPriorityLevel(event.target.value)}
+          />
+        </div>
+        <div className="form-group form-check">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="completionStatus"
+            checked={completionStatus}
+            onChange={(event) => setCompletionStatus(event.target.checked)}
+          />
+          <label className="form-check-label" htmlFor="completionStatus">
+            Completed
+          </label>
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Save Changes
+        </button>
+      </form>
+    </div>
   );
 };
 
