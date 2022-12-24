@@ -22,7 +22,10 @@ const AllTasks = () => {
             <div className="card-body">
               <h5 className="card-title">{task.title}</h5>
               <p className="card-text">{task.description}</p>
-              <Link to={`/tasks/${task.id}`} className="btn btn-primary">
+              <Link
+                to={`/tasks/${task.id}`}
+                className="btn btn-primary view-details-btn"
+              >
                 View Details
               </Link>
             </div>

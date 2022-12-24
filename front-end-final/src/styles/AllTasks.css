@@ -49,16 +49,17 @@
   margin-right: 20px;
 }
 
-.card .btn {
+.view-details-btn {
+  background-color: #00adef;
+  color: #fff;
+  border-color: #fff;
+  font-size: 16px;
+  font-weight: 600;
   width: 150px;
-  margin-top: 20px;
-  background-color: #007bff; /* Change the button color on hover */
-  border-color: #007bff;
-  color: #ffffff;
-  transition: background-color 0.3s ease-in-out;
 }
 
-.card .btn:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
+.view-details-btn:hover {
+  background-color: #fff;
+  color: #00adef;
+  border-color: #fff;
 }
