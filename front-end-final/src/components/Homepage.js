@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import "../styles/Homepage.css";
 
 const Homepage = () => {
+  const reloadPage = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 10); // delay of 10 milliseconds
+  };
+
   return (
     <div className="homepage-container container text-center">
       <h1 className="my-5 homepage-title">
@@ -13,21 +19,28 @@ const Homepage = () => {
         <Link
           to="/employees"
           className="btn btn-primary btn-lg mb-3 homepage-btn"
+          onClick={reloadPage}
         >
           View All Employees
         </Link>
-        <Link to="/tasks" className="btn btn-primary btn-lg mb-3 homepage-btn">
+        <Link
+          to="/tasks"
+          className="btn btn-primary btn-lg mb-3 homepage-btn"
+          onClick={reloadPage}
+        >
           View All Tasks
         </Link>
         <Link
           to="/add-employee"
           className="btn btn-success btn-lg mb-3 homepage-btn"
+          onClick={reloadPage}
         >
           Create New Employee
         </Link>
         <Link
           to="/add-task"
           className="btn btn-success btn-lg mb-3 homepage-btn"
+          onClick={reloadPage}
         >
           Create New Task
         </Link>
