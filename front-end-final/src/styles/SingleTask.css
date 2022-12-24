@@ -1,0 +1,74 @@
+.task-card {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 40px;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.task-card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.task-card .card-title {
+  font-size: 2rem;
+}
+
+.task-card .card-subtitle {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.task-card .card-text {
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.task-card .btn {
+  width: 100px;
+  height: 50px;
+  margin: 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.task-card .btn:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.task-card .btn:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(1px);
+}
+
+.task-card .btn.btn-primary {
+  background-color: #0069d9;
+  color: #fff;
+}
+
+.task-card .btn.btn-primary:hover {
+  background-color: #005cb2;
+}
+
+.task-card .btn.btn-primary:active {
+  background-color: #0069d9;
+}
+
+.task-card .btn.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.task-card .btn.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.task-card .btn.btn-danger:active {
+  background-color: #dc3545;
+}

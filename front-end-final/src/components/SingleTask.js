@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Button, Form, Col, Alert } from "react-bootstrap";
+import "../styles/SingleTask.css";
 
 const SingleTask = (props) => {
   const [task, setTask] = useState({});
@@ -35,15 +36,28 @@ const SingleTask = (props) => {
   }
 
   return (
-    <Card>
+    <Card className="task-card">
       <Card.Body>
-        <Card.Title>{task.description}</Card.Title>
-        <Card.Subtitle>Priority: {task.priorityLevel}</Card.Subtitle>
-        <Card.Text>Completed: {task.completionStatus ? "Yes" : "No"}</Card.Text>
-        <Button as={Link} to={`/tasks/edit/${task.id}`} variant="primary">
+        <Card.Title className="task-description">{task.description}</Card.Title>
+        <Card.Subtitle className="task-priority">
+          Priority: {task.priorityLevel}
+        </Card.Subtitle>
+        <Card.Text className="task-completion">
+          Completed: {task.completionStatus ? "Yes" : "No"}
+        </Card.Text>
+        <Button
+          as={Link}
+          to={`/tasks/edit/${task.id}`}
+          variant="primary"
+          className="edit-btn"
+        >
           Edit
         </Button>
-        <Button onClick={() => handleDelete(task.id)} variant="danger">
+        <Button
+          onClick={() => handleDelete(task.id)}
+          variant="danger"
+          className="delete-btn"
+        >
           Delete
         </Button>
       </Card.Body>

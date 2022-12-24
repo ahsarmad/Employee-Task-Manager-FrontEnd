@@ -44,12 +44,11 @@ const AllEmployees = () => {
               <div className="btn-group">
                 <div>
                   <Link
-                    to={`/employees/${employee.id}/edit`}
+                    to={`/employees/${employee.id}`}
                     className="btn btn-primary view-details-btn"
                   >
-                    Edit
+                    View
                   </Link>
-                  <button className="btn btn- delete-btn">Delete</button>
                 </div>
               </div>
             </div>
