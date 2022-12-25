@@ -1,63 +1,3 @@
-// import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
-// import axios from "axios";
-
-// const AddTask = ({ employeeId }) => {
-//   const [description, setDescription] = useState("");
-//   const [priorityLevel, setPriorityLevel] = useState("");
-//   const [completionStatus, setCompletionStatus] = useState(false);
-//   const history = useHistory();
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     try {
-//       await axios.post(`/employees/${employeeId}/tasks`, {
-//         description,
-//         priorityLevel,
-//         completionStatus,
-//       });
-//       history.push(`/employees/${employeeId}`);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <label>
-//         Description:
-//         <input
-//           type="text"
-//           value={description}
-//           onChange={(event) => setDescription(event.target.value)}
-//         />
-//       </label>
-//       <br />
-//       <label>
-//         Priority Level:
-//         <input
-//           type="text"
-//           value={priorityLevel}
-//           onChange={(event) => setPriorityLevel(event.target.value)}
-//         />
-//       </label>
-//       <br />
-//       <label>
-//         Completion Status:
-//         <input
-//           type="checkbox"
-//           checked={completionStatus}
-//           onChange={(event) => setCompletionStatus(event.target.checked)}
-//         />
-//       </label>
-//       <br />
-//       <button type="submit">Add Task</button>
-//     </form>
-//   );
-// };
-
-// export default AddTask;
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/AddTask.css";
@@ -80,18 +20,18 @@ const AddTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/tasks", {
+      await axios.post(`http://localhost:3000/tasks`, {
+        employeeId: assignToEmployee,
         description,
         priorityLevel,
         completionStatus,
-        assignToEmployee,
       });
-      setSuccess(res.data.message);
+
+      setSuccess("Task added successfully");
       setError(null);
       setDescription("");
       setPriorityLevel("");
       setCompletionStatus("");
-      setAssignToEmployee("");
     } catch (error) {
       setError(error.response.data.message);
       setSuccess(null);
@@ -164,5 +104,4 @@ const AddTask = () => {
     </div>
   );
 };
-
 export default AddTask;

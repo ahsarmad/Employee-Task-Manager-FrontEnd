@@ -1,0 +1,150 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+form h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+form input,
+form select {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  font-size: 1.2rem;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+form input[type="text"],
+form input[type="email"] {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  font-size: 1.2rem;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus {
+  border: 2px solid #0069d9;
+  outline: none;
+}
+
+form input[type="text"]:focus::placeholder,
+form input[type="email"]:focus::placeholder {
+  color: #bbb;
+}
+
+form input[type="text"]:focus::-webkit-input-placeholder,
+form input[type="email"]:focus::-webkit-input-placeholder {
+  color: #bbb;
+}
+
+form input[type="text"]:focus::-moz-placeholder,
+form input[type="email"]:focus::-moz-placeholder {
+  color: #bbb;
+}
+
+form input[type="text"]:focus::-ms-input-placeholder,
+form input[type="email"]:focus::-ms-input-placeholder {
+  color: #bbb;
+}
+
+form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+form input[type="text"],
+form input[type="email"],
+form select {
+  transition: all 0.3s ease-in-out;
+}
+
+form select:focus {
+  border: 2px solid #0069d9;
+  outline: none;
+}
+
+form select:focus::placeholder {
+  color: #bbb;
+}
+
+form select:focus::-webkit-input-placeholder {
+  color: #bbb;
+}
+
+form select:focus::-moz-placeholder {
+  color: #bbb;
+}
+
+form select:focus::-ms-input-placeholder {
+  color: #bbb;
+}
+.submit-btn {
+  background-color: #0069d9;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 150px;
+  max-width: 150px;
+  height: 50px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn:hover {
+  background-color: #005cb2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:active {
+  background-color: #0069d9;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(1px);
+}
+
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #005cb2;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease-in-out;
+}
+
+.submit-btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (max-width: 768px) {
+  form {
+    width: 80%;
+  }
+}

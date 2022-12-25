@@ -3,14 +3,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Button, Form, Col, Alert } from "react-bootstrap";
 import "../styles/SingleEmployee.css";
+import { useParams } from "react-router-dom";
 
 const SingleEmployee = (props) => {
   const [employee, setEmployee] = useState({});
+  const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
-    const employeeId = props.match.params.id;
-    getEmployee(employeeId);
+    getEmployee(id);
+    getTasks(id);
   }, []);
 
   const getEmployee = async (id) => {
@@ -18,6 +21,19 @@ const SingleEmployee = (props) => {
       const res = await axios.get(`http://localhost:3000/employees/${id}`);
       setEmployee(res.data);
     } catch (err) {
+      setError(err.response.data.message);
+    }
+  };
+
+  const getTasks = async (id) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3000/tasks/employees/${id}/tasks`
+      );
+      console.log(res.data); // Log the response data
+      setTasks(res.data);
+    } catch (err) {
+      console.log(err.response.data.message); // Log the error message
       setError(err.response.data.message);
     }
   };
@@ -45,6 +61,22 @@ const SingleEmployee = (props) => {
           <p className="employee-department">
             Department: {employee.department}
           </p>
+          <h2 className="tasks-title">Tasks</h2>
+          {tasks.map((task) => (
+            <Card className="task-card" key={task.id}>
+              <Card.Body>
+                <Card.Title className="task-description">
+                  {task.description}
+                </Card.Title>
+                <Card.Subtitle className="task-priority">
+                  Priority: {task.priorityLevel}
+                </Card.Subtitle>
+                <Card.Text className="task-completion">
+                  Completed: {task.completionStatus ? "Yes" : "No"}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
         </div>
         <div className="employee-actions">
           <Button
