@@ -67,7 +67,7 @@ const AddEmployee = () => {
             required
           />
         </div>
-        <button type="submit" className="submit-btn">
+        <button type="submit" className="btn submit-btn">
           Add Employee
         </button>
       </form>

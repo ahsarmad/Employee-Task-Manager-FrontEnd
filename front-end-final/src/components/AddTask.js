@@ -111,7 +111,7 @@ const AddTask = () => {
             <option value="true">Complete</option>
           </select>
         </div>
-        <button type="submit" className="submit-btn">
+        <button type="submit" className="btn submit-btn">
           Add Task
         </button>
       </form>

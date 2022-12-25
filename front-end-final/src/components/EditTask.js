@@ -93,7 +93,7 @@ const EditTask = ({ match }) => {
             Completed
           </label>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn submit-btn">
           Save Changes
         </button>
       </form>
