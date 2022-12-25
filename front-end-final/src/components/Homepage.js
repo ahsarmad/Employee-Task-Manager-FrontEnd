@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import "../styles/Homepage.css";
 import codingLottie from "../assets/lottie/coding.json";
-import manWorkProjectorLottie from "../assets/lottie/man-work-projector.json";
+import manWorkProjectorLottie from "../assets/lottie/man-project-screen.json";
 import manStandCode from "../assets/lottie/man-stand-code.json";
 
 const Homepage = () => {
@@ -15,25 +15,38 @@ const Homepage = () => {
   };
 
   return (
+    // <div className="homepage-container container text-center">
+    //   <h1 className="mt-2 homepage-title">
+    //     Welcome to the Task Management App!
+    //   </h1>
     <div className="homepage-container container text-center">
-      <h1 className="my-3 homepage-title">
-        Welcome to the Task Management App!
+      <h1 className="my-2 homepage-title">
+        <span className="welcome-text">
+          Welcome to the Task Management App!
+        </span>
       </h1>
-      <div className="d-flex flex-column align-items-center homepage-btns">
+      <div className="d-flex flex-column align-items-center homepage-btns mb-5">
         <div style={{ position: "absolute", left: 10, marginTop: 80 }}>
           <Lottie
-            options={{ animationData: manWorkProjectorLottie }}
-            width={350}
-            height={350}
+            options={{ animationData: codingLottie }}
+            width={"30vw"}
+            height={"50vh"}
           />
         </div>
-        {/* <div style={{ position: "absolute", right: 10, marginTop: 80 }}>
+        <div style={{ position: "absolute", right: 10, marginTop: 80 }}>
+          <Lottie
+            options={{ animationData: manWorkProjectorLottie }}
+            width={"28vw"}
+            height={"50vh"}
+          />
+        </div>
+        <div style={{ position: "absolute", bottom: 0 }}>
           <Lottie
             options={{ animationData: manStandCode }}
-            width={475}
-            height={475}
+            width={"22vw"}
+            height={"40vh"}
           />
-        </div> */}
+        </div>
 
         <Link
           to="/employees"
@@ -63,14 +76,6 @@ const Homepage = () => {
         >
           Create New Task
         </Link>
-      </div>
-
-      <div style={{ position: "absolute", bottom: 0, marginTop: 80 }}>
-        <Lottie
-          options={{ animationData: codingLottie }}
-          width={350}
-          height={350}
-        />
       </div>
     </div>
   );

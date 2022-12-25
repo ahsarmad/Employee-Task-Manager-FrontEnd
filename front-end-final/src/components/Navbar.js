@@ -121,13 +121,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <NavLink
-                className="nav-link"
-                to="/"
-                onMouseEnter={() => setNavbarColor("#2980b9")}
-                onMouseLeave={() => setNavbarColor("")}
-                onClick={reloadPage}
-              >
+              <NavLink className="nav-link" to="/" onClick={reloadPage}>
                 Home
               </NavLink>
             </li>
@@ -135,21 +129,13 @@ const Navbar = () => {
               <NavLink
                 className="nav-link"
                 to="/employees"
-                onMouseEnter={() => setNavbarColor("#2980b9")}
-                onMouseLeave={() => setNavbarColor("")}
                 onClick={reloadPage}
               >
                 Employees
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/tasks"
-                onMouseEnter={() => setNavbarColor("#2980b9")}
-                onMouseLeave={() => setNavbarColor("")}
-                onClick={reloadPage}
-              >
+              <NavLink className="nav-link" to="/tasks" onClick={reloadPage}>
                 Tasks
               </NavLink>
             </li>
@@ -157,21 +143,13 @@ const Navbar = () => {
               <NavLink
                 className="nav-link"
                 to="/add-employee"
-                onMouseEnter={() => setNavbarColor("#2980b9")}
-                onMouseLeave={() => setNavbarColor("")}
                 onClick={reloadPage}
               >
                 Add Employee
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/add-task"
-                onMouseEnter={() => setNavbarColor("#2980b9")}
-                onMouseLeave={() => setNavbarColor("")}
-                onClick={reloadPage}
-              >
+              <NavLink className="nav-link" to="/add-task" onClick={reloadPage}>
                 Add Task
               </NavLink>
             </li>
