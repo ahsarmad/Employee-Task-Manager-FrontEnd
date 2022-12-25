@@ -1,63 +1,3 @@
-// import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
-// import axios from "axios";
-
-// const AddTask = ({ employeeId }) => {
-//   const [description, setDescription] = useState("");
-//   const [priorityLevel, setPriorityLevel] = useState("");
-//   const [completionStatus, setCompletionStatus] = useState(false);
-//   const history = useHistory();
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     try {
-//       await axios.post(`/employees/${employeeId}/tasks`, {
-//         description,
-//         priorityLevel,
-//         completionStatus,
-//       });
-//       history.push(`/employees/${employeeId}`);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <label>
-//         Description:
-//         <input
-//           type="text"
-//           value={description}
-//           onChange={(event) => setDescription(event.target.value)}
-//         />
-//       </label>
-//       <br />
-//       <label>
-//         Priority Level:
-//         <input
-//           type="text"
-//           value={priorityLevel}
-//           onChange={(event) => setPriorityLevel(event.target.value)}
-//         />
-//       </label>
-//       <br />
-//       <label>
-//         Completion Status:
-//         <input
-//           type="checkbox"
-//           checked={completionStatus}
-//           onChange={(event) => setCompletionStatus(event.target.checked)}
-//         />
-//       </label>
-//       <br />
-//       <button type="submit">Add Task</button>
-//     </form>
-//   );
-// };
-
-// export default AddTask;
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/AddTask.css";
@@ -80,23 +20,24 @@ const AddTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/tasks", {
+      await axios.post(`http://localhost:3000/tasks`, {
+        employeeId: assignToEmployee,
         description,
         priorityLevel,
         completionStatus,
-        assignToEmployee,
       });
-      setSuccess(res.data.message);
+
+      setSuccess("Task added successfully");
       setError(null);
       setDescription("");
       setPriorityLevel("");
       setCompletionStatus("");
-      setAssignToEmployee("");
     } catch (error) {
       setError(error.response.data.message);
       setSuccess(null);
     }
   };
+
   return (
     <div className="add-task-container">
       <form onSubmit={handleSubmit}>
@@ -122,7 +63,6 @@ const AddTask = () => {
             ))}
           </select>
         </div>
-
         <div className="form-input">
           <label htmlFor="description">Description</label>
           <textarea
@@ -133,36 +73,49 @@ const AddTask = () => {
             required
           ></textarea>
         </div>
-
         <div className="form-input">
           <label htmlFor="priorityLevel">Priority Level</label>
-          <input
-            type="number"
+          <p className="priority-level-note">
+            (1 being the lowest, 5 being the highest)
+          </p>
+          <select
             name="priorityLevel"
             id="priorityLevel"
-            min="1"
-            max="10"
             value={priorityLevel}
             onChange={(e) => setPriorityLevel(e.target.value)}
             required
-          />
+          >
+            <option value="" disabled>
+              Select a priority level
+            </option>
+            {[1, 2, 3, 4, 5].map((num) => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-input">
           <label htmlFor="completionStatus">Completion Status</label>
-          <input
-            type="checkbox"
+          <select
             name="completionStatus"
             id="completionStatus"
-            checked={completionStatus}
-            onChange={(e) => setCompletionStatus(e.target.checked)}
-          />
+            value={completionStatus}
+            onChange={(e) => setCompletionStatus(e.target.value)}
+            required
+          >
+            <option value="" disabled>
+              Select a completion status
+            </option>
+            <option value="false">Not Complete</option>
+            <option value="true">Complete</option>
+          </select>
         </div>
-        <button type="submit" className="submit-btn">
+        <button type="submit" className="btn submit-btn">
           Add Task
         </button>
       </form>
     </div>
   );
 };
-
 export default AddTask;

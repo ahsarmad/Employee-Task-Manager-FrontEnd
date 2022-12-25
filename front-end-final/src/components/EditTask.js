@@ -8,6 +8,8 @@ const EditTask = ({ match }) => {
   const [description, setDescription] = useState("");
   const [priorityLevel, setPriorityLevel] = useState("");
   const [completionStatus, setCompletionStatus] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
@@ -18,27 +20,41 @@ const EditTask = ({ match }) => {
         setPriorityLevel(response.data.priorityLevel);
         setCompletionStatus(response.data.completionStatus);
       })
+
       .catch((error) => console.error(error));
   }, [match.params.id]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const updatedTask = {
+        description,
+        priorityLevel,
+        completionStatus,
+      };
+      axios.put(`http://localhost:3000/tasks/${match.params.id}`, updatedTask);
+      setSuccess("Task updated successfully");
 
-    const updatedTask = {
-      description,
-      priorityLevel,
-      completionStatus,
-    };
-
-    axios
-      .put(`http://localhost:3000/tasks/${match.params.id}`, updatedTask)
-      .then((response) => console.log(response))
-      .catch((error) => console.error(error));
+      setError(null);
+    } catch (error) {
+      setError(error.response.data.message);
+      setSuccess(null);
+    }
   };
 
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-5">Edit Task</h1>
+      {error && (
+        <p className="error" style={{ textAlign: "center" }}>
+          {error}
+        </p>
+      )}
+      {success && (
+        <p className="success" style={{ textAlign: "center" }}>
+          {success}
+        </p>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="description">Description</label>
@@ -63,16 +79,21 @@ const EditTask = ({ match }) => {
         <div className="form-group form-check">
           <input
             type="checkbox"
+            style={{ width: 30, height: 30 }}
             className="form-check-input"
             id="completionStatus"
             checked={completionStatus}
             onChange={(event) => setCompletionStatus(event.target.checked)}
           />
-          <label className="form-check-label" htmlFor="completionStatus">
+          <label
+            className="form-check-label"
+            htmlFor="completionStatus"
+            style={{ padding: 7 }}
+          >
             Completed
           </label>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn submit-btn">
           Save Changes
         </button>
       </form>

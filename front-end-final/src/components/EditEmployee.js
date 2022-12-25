@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import "../styles/EditEmployee.css";
 
 const EditEmployee = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [department, setDepartment] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const employeeId = props.match.params.id;
 
   useEffect(() => {
@@ -22,55 +23,66 @@ const EditEmployee = (props) => {
       });
   }, [employeeId]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios
-      .put(`http://localhost:3000/employees/${employeeId}`, {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:3000/employees/${employeeId}`, {
         firstName,
         lastName,
         department,
-      })
-      .then(() => {
-        props.history.push(`/employees/${employeeId}`);
-      })
-      .catch((error) => {
-        setError(error.response.data.message);
       });
+      setSuccess("Employee updated successfully");
+      setError(null);
+    } catch (error) {
+      setError(error.response.data.message);
+      setSuccess(null);
+    }
   };
 
   return (
-    <div>
-      <h1>Edit Employee</h1>
-      {error && <p className="text-danger">{error}</p>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
+    <div className="add-employee-container">
+      <form onSubmit={handleSubmit}>
+        <h1 className="form-title">Edit Employee</h1>
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+        <div className="form-input">
+          <label htmlFor="firstName">First Name</label>
+          <input
             type="text"
+            name="firstName"
+            id="firstName"
             value={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
           />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
+        </div>
+        <div className="form-input">
+          <label htmlFor="lastName">Last Name</label>
+          <input
             type="text"
+            name="lastName"
+            id="lastName"
             value={lastName}
-            onChange={(event) => setLastName(event.target.value)}
+            onChange={(e) => setLastName(e.target.value)}
+            required
           />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Department</Form.Label>
-          <Form.Control
+        </div>
+        <div className="form-input">
+          <label htmlFor="department">Department</label>
+          <input
             type="text"
+            name="department"
+            id="department"
             value={department}
-            onChange={(event) => setDepartment(event.target.value)}
+            onChange={(e) => setDepartment(e.target.value)}
+            required
           />
-        </Form.Group>
-        <Button type="submit">Save Changes</Button>
-      </Form>
+        </div>
+        <button type="submit" className="btn submit-btn">
+          Save Changes
+        </button>
+      </form>
     </div>
   );
 };
-
 export default EditEmployee;
