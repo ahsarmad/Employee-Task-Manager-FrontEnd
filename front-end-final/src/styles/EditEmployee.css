@@ -148,3 +148,25 @@ form select:focus::-ms-input-placeholder {
     width: 80%;
   }
 }
+
+.error {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.success {
+  color: green;
+  margin-bottom: 20px;
+}
+.add-employee-container {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

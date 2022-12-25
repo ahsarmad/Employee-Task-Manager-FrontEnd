@@ -37,6 +37,7 @@ const AddTask = () => {
       setSuccess(null);
     }
   };
+
   return (
     <div className="add-task-container">
       <form onSubmit={handleSubmit}>
@@ -62,7 +63,6 @@ const AddTask = () => {
             ))}
           </select>
         </div>
-
         <div className="form-input">
           <label htmlFor="description">Description</label>
           <textarea
@@ -73,29 +73,43 @@ const AddTask = () => {
             required
           ></textarea>
         </div>
-
         <div className="form-input">
           <label htmlFor="priorityLevel">Priority Level</label>
-          <input
-            type="number"
+          <p className="priority-level-note">
+            (1 being the lowest, 5 being the highest)
+          </p>
+          <select
             name="priorityLevel"
             id="priorityLevel"
-            min="1"
-            max="10"
             value={priorityLevel}
             onChange={(e) => setPriorityLevel(e.target.value)}
             required
-          />
+          >
+            <option value="" disabled>
+              Select a priority level
+            </option>
+            {[1, 2, 3, 4, 5].map((num) => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-input">
           <label htmlFor="completionStatus">Completion Status</label>
-          <input
-            type="checkbox"
+          <select
             name="completionStatus"
             id="completionStatus"
-            checked={completionStatus}
-            onChange={(e) => setCompletionStatus(e.target.checked)}
-          />
+            value={completionStatus}
+            onChange={(e) => setCompletionStatus(e.target.value)}
+            required
+          >
+            <option value="" disabled>
+              Select a completion status
+            </option>
+            <option value="false">Not Complete</option>
+            <option value="true">Complete</option>
+          </select>
         </div>
         <button type="submit" className="submit-btn">
           Add Task

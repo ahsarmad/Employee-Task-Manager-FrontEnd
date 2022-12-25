@@ -5,6 +5,12 @@ import "../styles/AllEmployees.css";
 import employeeImage from "../assets/img/worker.png";
 
 const AllEmployees = () => {
+  const reloadPage = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 10); // delay of 10 milliseconds
+  };
+
   const [employees, setEmployees] = useState([]);
   const location = useLocation();
 
@@ -44,6 +50,7 @@ const AllEmployees = () => {
               <div className="btn-group">
                 <div>
                   <Link
+                    onClick={reloadPage}
                     to={`/employees/${employee.id}`}
                     className="btn btn-primary view-details-btn"
                   >

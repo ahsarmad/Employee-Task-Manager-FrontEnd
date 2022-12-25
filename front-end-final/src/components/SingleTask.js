@@ -5,6 +5,16 @@ import { Card, Button, Form, Col, Alert } from "react-bootstrap";
 import "../styles/SingleTask.css";
 
 const SingleTask = (props) => {
+  const reloadPageEdit = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 10);
+  };
+  const reloadPageDelete = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  };
   const [task, setTask] = useState({});
   const [error, setError] = useState(null);
 
@@ -50,11 +60,15 @@ const SingleTask = (props) => {
           to={`/tasks/edit/${task.id}`}
           variant="primary"
           className="edit-btn"
+          onClick={reloadPageEdit}
         >
           Edit
         </Button>
         <Button
-          onClick={() => handleDelete(task.id)}
+          onClick={() => {
+            handleDelete(task.id);
+            reloadPageDelete();
+          }}
           variant="danger"
           className="delete-btn"
         >

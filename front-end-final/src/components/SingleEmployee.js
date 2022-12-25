@@ -6,6 +6,16 @@ import "../styles/SingleEmployee.css";
 import { useParams } from "react-router-dom";
 
 const SingleEmployee = (props) => {
+  const reloadPageEdit = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 10);
+  };
+  const reloadPageDelete = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  };
   const [employee, setEmployee] = useState({});
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
@@ -84,11 +94,15 @@ const SingleEmployee = (props) => {
             to={`/employees/edit/${employee.id}`}
             variant="primary"
             className="edit-btn"
+            onClick={reloadPageEdit}
           >
             Edit
           </Button>
           <Button
-            onClick={() => handleDelete(employee.id)}
+            onClick={() => {
+              handleDelete(employee.id);
+              reloadPageDelete();
+            }}
             variant="danger"
             className="delete-btn"
           >
