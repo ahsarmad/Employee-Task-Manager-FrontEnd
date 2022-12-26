@@ -20,12 +20,12 @@ const AllTasks = () => {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center mb-5">All Tasks</h1>
-      <div className="card-columns">
+      <h1 className="text-center mb-5 card-Title">All Tasks</h1>
+      <div className="card-columns" style={{ marginBottom: 30 }}>
         {tasks.map((task) => (
           <div key={task.id} className="card text-center shadow-lg">
             <div className="card-body">
-              <h5 className="card-Task-title">{task.title}</h5>
+              <h5 className="card-text-title">{task.title}</h5>
               <p className="card-text">{task.description}</p>
               <p className="card-text">
                 Assigned to: {task.employee.firstName} {task.employee.lastName}

@@ -43,60 +43,74 @@ const EditTask = ({ match }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-5">Edit Task</h1>
-      {error && (
-        <p className="error" style={{ textAlign: "center" }}>
-          {error}
-        </p>
-      )}
-      {success && (
-        <p className="success" style={{ textAlign: "center" }}>
-          {success}
-        </p>
-      )}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            className="form-control"
-            id="description"
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="priorityLevel">Priority Level</label>
-          <input
-            type="text"
-            className="form-control"
-            id="priorityLevel"
-            value={priorityLevel}
-            onChange={(event) => setPriorityLevel(event.target.value)}
-          />
-        </div>
-        <div className="form-group form-check">
-          <input
-            type="checkbox"
-            style={{ width: 30, height: 30 }}
-            className="form-check-input"
-            id="completionStatus"
-            checked={completionStatus}
-            onChange={(event) => setCompletionStatus(event.target.checked)}
-          />
-          <label
-            className="form-check-label"
-            htmlFor="completionStatus"
-            style={{ padding: 7 }}
-          >
-            Completed
-          </label>
-        </div>
-        <button type="submit" className="btn submit-btn">
-          Save Changes
-        </button>
-      </form>
+    <div className="edit-task-container">
+      <div className="container mt-5">
+        <h1 className="text-center mb-5 form-title">Edit Task</h1>
+        {error && (
+          <p className="error" style={{ textAlign: "center" }}>
+            {error}
+          </p>
+        )}
+        {success && (
+          <p className="success" style={{ textAlign: "center" }}>
+            {success}
+          </p>
+        )}
+        <form onSubmit={handleSubmit}>
+          <div className="form-input">
+            <label htmlFor="description">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            ></textarea>
+          </div>
+          <div className="form-input">
+            <label htmlFor="priorityLevel">Priority Level</label>
+            <p className="priority-level-note">
+              (1 being the lowest, 5 being the highest)
+            </p>
+            <select
+              name="priorityLevel"
+              id="priorityLevel"
+              value={priorityLevel}
+              onChange={(e) => setPriorityLevel(e.target.value)}
+              required
+            >
+              <option value="" disabled>
+                Select a priority level
+              </option>
+              {[1, 2, 3, 4, 5].map((num) => (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-input form-check">
+            <input
+              type="checkbox"
+              style={{ width: 30, height: 30 }}
+              className="form-check-input"
+              id="completionStatus"
+              checked={completionStatus}
+              onChange={(event) => setCompletionStatus(event.target.checked)}
+            />
+            <label
+              className="form-check-label"
+              htmlFor="completionStatus"
+              style={{ marginTop: -10 }}
+            >
+              Completed
+            </label>
+          </div>
+          <button type="submit" className="btn submit-btn">
+            Save Changes
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

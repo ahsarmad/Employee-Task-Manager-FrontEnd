@@ -23,8 +23,8 @@
 }
 
 .navbar a:hover {
-  color: #0069d9;
-  text-shadow: 0px 0px 50px #fff;
+  color: #4559fa;
+  text-shadow: 0px 6px 50px #fff;
 }
 
 .navbar .brand {
@@ -60,8 +60,8 @@
 }
 
 .navbar .nav-link:hover {
-  color: #0069d9;
-  text-shadow: 0px 0px 50px #fff;
+  color: #4559fa;
+  text-shadow: 0px 12px 50px #fff;
 }
 
 @media (max-width: 992px) {

@@ -1,16 +1,21 @@
+body {
+  background-color: #001628;
+}
 .employee-card {
   width: 80%;
   margin: 0 auto;
   margin-top: 40px;
-  border: none;
-  border-radius: 5px;
+  border-color: #4559fa;
+  border-radius: 15px;
   transition: all 0.3s ease-in-out;
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
+  background-color: #001628;
 }
 
 .employee-card:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px #4559fa;
   transform: translateY(-2px);
+  transform: scale(1.05);
 }
 
 .employee-card .employee-info {
@@ -19,11 +24,13 @@
 }
 
 .employee-card .employee-info h1 {
+  color: white;
   font-size: 2rem;
   margin-bottom: 10px;
 }
 
 .employee-card .employee-info p {
+  color: white;
   font-size: 1.2rem;
   margin-bottom: 5px;
 }
@@ -34,17 +41,20 @@
 }
 
 .employee-card .employee-tasks h3 {
+  color: white;
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
 .employee-card .employee-tasks ul {
+  color: white;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .employee-card .employee-tasks ul li {
+  color: white;
   font-size: 1.2rem;
   margin-bottom: 5px;
   color: #999;
@@ -57,12 +67,12 @@
   font-size: 1.2rem;
   border-radius: 5px;
   border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px #001628;
   transition: all 0.3s ease-in-out;
 }
 
 .employee-card .btn:hover {
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 8px white;
   transform: translateY(-2px);
 }
 
@@ -72,7 +82,7 @@
 }
 
 .employee-card .btn.btn-primary {
-  background-color: #0069d9;
+  background-color: #4559fa;
   color: #fff;
 }
 
@@ -110,4 +120,53 @@
   100% {
     opacity: 1;
   }
+}
+
+.no-tasks {
+  color: white;
+}
+
+.task-description {
+  color: white;
+}
+
+.tasks-title {
+  color: white;
+}
+
+.task-completion {
+  color: white;
+}
+
+.task-priority {
+  color: white;
+}
+
+.task-card {
+  text-decoration: none;
+  border-radius: 15px;
+  background-color: #001628;
+  border-color: #4559fa;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.task-card:hover {
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1), 0 5px 15px 0 rgba(0, 0, 0, 0.05);
+  background-color: #4559fa;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.card-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.task-link {
+  text-decoration: none;
 }

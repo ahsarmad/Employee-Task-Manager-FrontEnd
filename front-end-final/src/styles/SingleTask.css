@@ -1,16 +1,22 @@
+body {
+  background-color: #001628;
+}
+
 .task-card {
+  border-color: #4559fa;
+  background-color: #001628;
   width: 80%;
   margin: 0 auto;
   margin-top: 40px;
-  border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: all 0.3s ease-in-out;
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .task-card:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px #4559fa;
   transform: translateY(-2px);
+  transform: scale(1.05);
 }
 
 .task-card .card-title {
@@ -34,12 +40,12 @@
   font-size: 1.2rem;
   border-radius: 5px;
   border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px #001628;
   transition: all 0.3s ease-in-out;
 }
 
 .task-card .btn:hover {
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 8px white;
   transform: translateY(-2px);
 }
 
@@ -49,7 +55,7 @@
 }
 
 .task-card .btn.btn-primary {
-  background-color: #0069d9;
+  background-color: #4559fa;
   color: #fff;
 }
 
@@ -80,4 +86,20 @@
   100% {
     opacity: 1;
   }
+}
+
+.task-description {
+  color: white;
+}
+
+.tasks-title {
+  color: white;
+}
+
+.task-completion {
+  color: white;
+}
+
+.task-priority {
+  color: white;
 }

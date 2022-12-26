@@ -1,87 +1,3 @@
-// import React, { useState } from "react";
-// import { NavLink } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "../styles/Navbar.css"; // Add this line to import your custom CSS
-
-// const Navbar = () => {
-//   const reloadPage = () => {
-//     setTimeout(() => {
-//       window.location.reload();
-//     }, 1); // delay of 10 milliseconds
-//   };
-
-//   const [navbarColor, setNavbarColor] = useState("");
-
-//   return (
-//     <nav className="navbar navbar-expand-lg navbar-light bg-light py-3">
-//       <div className="container">
-//         <a className="navbar-brand" href="#">
-//           Task Manager
-//         </a>
-//         <button className="navbar-toggler" type="button">
-//           <span className="navbar-toggler-icon" />
-//         </button>
-//         <div className="navbar-nav ml-auto">
-//           <ul className="navbar-nav ml-auto">
-//             <li className="nav-item active">
-//               <NavLink
-//                 className="nav-link"
-//                 to="/"
-//                 onMouseEnter={() => setNavbarColor("#2980b9")}
-//                 onMouseLeave={() => setNavbarColor("")}
-//               >
-//                 Home
-//               </NavLink>
-//             </li>
-//             <li className="nav-item">
-//               <NavLink
-//                 className="nav-link"
-//                 to="/employees"
-//                 onMouseEnter={() => setNavbarColor("#3498db")}
-//                 onMouseLeave={() => setNavbarColor("")}
-//               >
-//                 Employees
-//               </NavLink>
-//             </li>
-//             <li className="nav-item">
-//               <NavLink
-//                 className="nav-link"
-//                 to="/tasks"
-//                 onMouseEnter={() => setNavbarColor("#5dade2")}
-//                 onMouseLeave={() => setNavbarColor("")}
-//               >
-//                 Tasks
-//               </NavLink>
-//             </li>
-//             <li className="nav-item">
-//               <NavLink
-//                 className="nav-link"
-//                 to="/add-employee"
-//                 onMouseEnter={() => setNavbarColor("#74b9ff")}
-//                 onMouseLeave={() => setNavbarColor("")}
-//               >
-//                 Add Employee
-//               </NavLink>
-//             </li>
-//             <li className="nav-item">
-//               <NavLink
-//                 className="nav-link"
-//                 to="/add-task"
-//                 onMouseEnter={() => setNavbarColor("#a2d9ce")}
-//                 onMouseLeave={() => setNavbarColor("")}
-//               >
-//                 Add Task
-//               </NavLink>
-//             </li>
-//           </ul>
-//         </div>
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -89,9 +5,10 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
   const reloadPage = () => {
+    window.location.reload();
     setTimeout(() => {
       window.location.reload();
-    }, 1); // delay of 10 milliseconds
+    }, 1);
   };
   const [navbarColor, setNavbarColor] = useState("");
 
@@ -104,7 +21,12 @@ const Navbar = () => {
       }}
     >
       <div className="container">
-        <a className="navbar-brand" href="/">
+        <a
+          className="navbar-brand"
+          href="/"
+          onMouseEnter={() => setNavbarColor("#001424")}
+          onMouseLeave={() => setNavbarColor("")}
+        >
           Task Manager
         </a>
         <button
@@ -121,7 +43,13 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <NavLink className="nav-link" to="/" onClick={reloadPage}>
+              <NavLink
+                className="nav-link"
+                to="/"
+                onMouseEnter={() => setNavbarColor("#001424")}
+                onMouseLeave={() => setNavbarColor("")}
+                onClick={reloadPage}
+              >
                 Home
               </NavLink>
             </li>
@@ -129,13 +57,21 @@ const Navbar = () => {
               <NavLink
                 className="nav-link"
                 to="/employees"
+                onMouseEnter={() => setNavbarColor("#001424")}
+                onMouseLeave={() => setNavbarColor("")}
                 onClick={reloadPage}
               >
                 Employees
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/tasks" onClick={reloadPage}>
+              <NavLink
+                className="nav-link"
+                to="/tasks"
+                onMouseEnter={() => setNavbarColor("#001424")}
+                onMouseLeave={() => setNavbarColor("")}
+                onClick={reloadPage}
+              >
                 Tasks
               </NavLink>
             </li>
@@ -143,13 +79,21 @@ const Navbar = () => {
               <NavLink
                 className="nav-link"
                 to="/add-employee"
+                onMouseEnter={() => setNavbarColor("#001424")}
+                onMouseLeave={() => setNavbarColor("")}
                 onClick={reloadPage}
               >
                 Add Employee
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/add-task" onClick={reloadPage}>
+              <NavLink
+                className="nav-link"
+                to="/add-task"
+                onMouseEnter={() => setNavbarColor("#001424")}
+                onMouseLeave={() => setNavbarColor("")}
+                onClick={reloadPage}
+              >
                 Add Task
               </NavLink>
             </li>
