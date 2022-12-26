@@ -68,26 +68,56 @@ const SingleEmployee = (props) => {
           <h1 className="employee-name">
             {employee.firstName} {employee.lastName}
           </h1>
-          <p className="employee-department">
+          <p
+            className="employee-department"
+            style={{ fontSize: 24, fontWeight: 300 }}
+          >
             Department: {employee.department}
           </p>
           <h2 className="tasks-title">Tasks</h2>
-          {tasks.map((task) => (
-            <Card className="task-card" key={task.id}>
-              <Card.Body>
-                <Card.Title className="task-description">
-                  {task.description}
-                </Card.Title>
-                <Card.Subtitle className="task-priority">
-                  Priority: {task.priorityLevel}
-                </Card.Subtitle>
-                <Card.Text className="task-completion">
-                  Completed: {task.completionStatus ? "Yes" : "No"}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          ))}
+          {tasks.length > 0 ? (
+            <div className="card-columns">
+              {tasks.map((task) => (
+                <Card className="task-card" key={task.id}>
+                  <Link
+                    to={`/tasks/${task.id}`}
+                    onClick={reloadPageEdit}
+                    className="task-link"
+                  >
+                    <Card.Body>
+                      <Card.Title
+                        className="task-description"
+                        style={{ fontSize: 24, fontWeight: "bold" }}
+                      >
+                        {task.description}
+                      </Card.Title>
+                      <Card.Subtitle
+                        className="task-priority"
+                        style={{ fontSize: 22, fontWeight: 400 }}
+                      >
+                        Priority: {task.priorityLevel}
+                      </Card.Subtitle>
+                      <Card.Text
+                        className="task-completion"
+                        style={{ fontSize: 22, fontWeight: 400 }}
+                      >
+                        Completed: {task.completionStatus ? "Yes" : "No"}
+                      </Card.Text>
+                    </Card.Body>
+                  </Link>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div
+              className="no-tasks"
+              style={{ fontSize: 22, fontWeight: "250" }}
+            >
+              No tasks assigned
+            </div>
+          )}
         </div>
+
         <div className="employee-actions">
           <Button
             as={Link}

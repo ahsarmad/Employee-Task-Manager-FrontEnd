@@ -20,29 +20,17 @@ const AllEmployees = () => {
       .then((data) => setEmployees(data));
   }, [location.pathname]);
 
-  const handleDelete = (id) => {
-    // Make a DELETE request to delete the employee with the specified id
-    fetch(`http://localhost:3000/employees/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then(() => {
-        // Remove the deleted employee from the list of employees
-        setEmployees(employees.filter((employee) => employee.id !== id));
-      });
-  };
-
   return (
     <div className="container mt-5">
-      <h1 className="text-center mb-5">All Employees</h1>
-      <div className="card-columns">
+      <h1 className="text-center mb-5 card-Title">All Employees</h1>
+      <div className="card-columns" style={{ marginBottom: 10 }}>
         {employees.map((employee) => (
           <div
             key={employee.id}
             className="card text-center shadow-lg employee-card"
           >
             <img src={employeeImage} className="card-img" alt="Employee" />
-            <div className="card-body">
+            <div className="card-body" style={{ display: "flex" }}>
               <h5 className="card-title">
                 {employee.firstName} {employee.lastName}
               </h5>

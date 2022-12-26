@@ -49,10 +49,16 @@ const SingleTask = (props) => {
     <Card className="task-card">
       <Card.Body>
         <Card.Title className="task-description">{task.description}</Card.Title>
-        <Card.Subtitle className="task-priority">
+        <Card.Subtitle
+          className="task-priority"
+          style={{ color: "white", fontSize: 26, fontWeight: 400 }}
+        >
           Priority: {task.priorityLevel}
         </Card.Subtitle>
-        <Card.Text className="task-completion">
+        <Card.Text
+          className="task-completion"
+          style={{ color: "white", fontSize: 22, fontWeight: 400 }}
+        >
           Completed: {task.completionStatus ? "Yes" : "No"}
         </Card.Text>
         <Button
